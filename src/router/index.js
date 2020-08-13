@@ -27,17 +27,7 @@ export default new Router({
                 {
                     path: 'createMock',
                     component: () => import(/* webpackChunkName: "form" */ '../components/page/mock/MockCreate.vue'),
-                    meta: { title: 'Create Job' }
-                },
-                {
-                    path: 'jobList',
-                    component: () => import(/* webpackChunkName: "table" */ '../components/page/job/JobList.vue'),
-                    meta: { title: 'Job List' }
-                },
-                {
-                    path: 'createJob',
-                    component: () => import(/* webpackChunkName: "form" */ '../components/page/job/JobCreate.vue'),
-                    meta: { title: 'Create Job' }
+                    meta: { title: 'Create Mock' }
                 },
                 {
                     path: 'upload',

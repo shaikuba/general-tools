@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> Job List
+                    <i class="el-icon-lx-cascades"></i> Mock List
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>

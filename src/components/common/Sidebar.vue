@@ -73,22 +73,6 @@ export default {
                     ]
                 },
                 {
-                    icon: 'el-icon-lx-calendar',
-                    index: '2',
-                    title: 'Job Management',
-                    subs: [
-                        {
-                            icon: 'el-icon-s-cooperation',
-                            index: 'jobList',
-                            title: 'Job List'
-                        },
-                        {
-                            index: 'createJob',
-                            title: 'Create Job'
-                        }
-                    ]
-                },
-                {
                     icon: 'el-icon-help',
                     index: '/help',
                     title: 'Help'

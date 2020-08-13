@@ -1,123 +1,152 @@
-# vue-manage-system #
-The web management system solution based on Vue2 and Element-UI。[live demo](http://blog.gdfengshuo.com/example/work/)
+<a href="https://github.com/vuejs/vue">
+    <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
+  </a>
+  <a href="https://github.com/ElemeFE/element">
+    <img src="https://img.shields.io/badge/element--ui-2.8.2-brightgreen.svg" alt="element-ui">
+  </a>
+  <a href="https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
+  </a>
+  <a href="https://github.com/lin-xin/vue-manage-system/releases">
+    <img src="https://img.shields.io/github/release/lin-xin/vue-manage-system.svg" alt="GitHub release">
+  </a>
+  <a href="http://blog.gdfengshuo.com/example/work/#/donate">
+    <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
+  </a>
 
-## Donation
-![WeChat](http://blog.gdfengshuo.com/images/weixin.jpg)
+基于 Vue.js + Element UI 的后台管理系统解决方案。[线上地址](http://blog.gdfengshuo.com/example/work/)
 
-## Preface ##
-The scheme as a set of multi-function background frame templates, suitable for most of the WEB management system development. Convenient development fast simple good components based on Vue2 and Element-UI. Color separation of color style, support manual switch themes, and it is convenient to use a custom theme color.
+本项目基于 vue-cli3 构建，如果是 vue-cli2 的请下载[旧版本 V3.2.0](https://github.com/lin-xin/vue-manage-system/releases/tag/V3.2.0)
 
-## Function ##
-- [x] Element-UI
-- [x] Login/Logout
-- [x] Dashboard
-- [x] Table
-- [x] Tabs
-- [x] From
-- [x] Chart :bar_chart:
-- [x] Editor
-- [x] Markdown
-- [x] Upload pictures by clipping or dragging
-- [x] Support manual switch themes :sparkles:
-- [x] List drag sort
-- [x] Permission
-- [x] 404 / 403
-- [x] Three level menu
-- [x] Custom icon
+> React + Ant Design 的版本正在开发中，仓库地址：[react-manage-system](https://github.com/lin-xin/react-manage-system)
+
+[English document](https://github.com/lin-xin/manage-system/blob/master/README_EN.md)
+
+## 项目截图
+
+### 登录
+
+![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms3.png)
+
+### 默认皮肤
+
+![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms1.png)
+
+### 浅绿色皮肤
+
+![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png)
+
+## 赞赏
+
+请作者喝杯咖啡吧！(微信号：linxin_20)
 
 
-## Installation steps ##
+## 前言
 
-	git clone https://github.com/lin-xin/vue-manage-system.git		// Clone templates
-	cd vue-manage-system											// Enter template directory
-	npm install													// Installation dependency
+该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统（Web Management System）开发。基于 vue.js，使用 vue-cli3 脚手架，引用 Element UI 组件库，方便开发快速简洁好看的组件。分离颜色样式，支持手动切换主题色，而且很方便使用自定义主题色。
 
-## Local development ##
+## 功能
 
-	// Open server and access http://localhost:8080 in browser
-	npm run serve
+-   [x] Element UI
+-   [x] 登录/注销
+-   [x] Dashboard
+-   [x] 表格
+-   [x] Tab 选项卡
+-   [x] 表单
+-   [x] 图表 :bar_chart:
+-   [x] 富文本编辑器
+-   [x] markdown 编辑器
+-   [x] 图片拖拽/裁剪上传
+-   [x] 支持切换主题色 :sparkles:
+-   [x] 列表拖拽排序
+-   [x] 权限测试
+-   [x] 404 / 403
+-   [x] 三级菜单
+-   [x] 自定义图标
+-   [x] 可拖拽弹窗
+-   [x] 国际化
 
-## Constructing production ##
+## 安装步骤
 
-	// Constructing project
-	npm run build
+```
+git clone https://github.com/lin-xin/vue-manage-system.git      // 把模板下载到本地
+cd vue-manage-system    // 进入模板目录
+npm install         // 安装项目依赖，等待安装完成之后，安装失败可用 cnpm 或 yarn
 
-## Component description and presentation ##
+// 开启服务器，浏览器访问 http://localhost:8080
+npm run serve
 
-### vue-schart ###
-Vue.js wrapper for sChart.js. Github : [vue-schart](https://github.com/linxin/vue-schart)
+// 执行构建命令，生成的dist文件夹放在服务器下即可访问
+npm run build
+```
 
-```JavaScript
+## 组件使用说明与演示
+
+### vue-schart
+
+vue.js 封装 sChart.js 的图表组件。访问地址：[vue-schart](https://github.com/linxin/vue-schart)
+
+<p><a href="https://www.npmjs.com/package/vue-schart"><img src="https://img.shields.io/npm/dm/vue-schart.svg" alt="Downloads"></a></p>
+
+```html
 <template>
     <div>
-        <schart :canvasId="canvasId"
-				:type="type"
-				:width="width"
-				:height="height"
-				:data="data"
-				:options="options"
-		></schart>
+        <schart class="wrapper" :canvasId="canvasId" :type="type" :data="data" :options="options"></schart>
     </div>
 </template>
-	
+
 <script>
-    import Schart from 'vue-schart';
+    import Schart from 'vue-schart'; // 导入Schart组件
     export default {
-        data: function(){
+        data: function() {
             return {
-                canvasId: 'myCanvas',
-                type: 'bar',
-                width: 500,
-                height: 400,
+                canvasId: 'myCanvas', // canvas的id
+                type: 'bar', // 图表类型
                 data: [
-                    {name: '2014', value: 1342},
-                    {name: '2015', value: 2123},
-                    {name: '2016', value: 1654},
-                    {name: '2017', value: 1795},
+                    { name: '2014', value: 1342 },
+                    { name: '2015', value: 2123 },
+                    { name: '2016', value: 1654 },
+                    { name: '2017', value: 1795 }
                 ],
                 options: {
+                    // 图表可选参数
                     title: 'Total sales of stores in recent years'
                 }
-            }
+            };
         },
         components: {
             Schart
         }
-    }
+    };
 </script>
+<style>
+    .wrapper {
+        width: 7rem;
+        height: 5rem;
+    }
+</style>
 ```
 
-### element-ui ###
-A desktop component library based on vue.js2.0 . Github : [element](http://element.eleme.io/#/zh-CN/component/layout)
+## 其他注意事项
 
-### Vue-Quill-Editor ###
-Quill editor component for Vue2. Github : [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
+### 一、如果我不想用到上面的某些组件呢，那我怎么在模板中删除掉不影响到其他功能呢？
 
-### mavonEditor ###
-A markdown editor based on Vue that supports a variety of personalized features. Github: [mavonEditor](https://github.com/hinesboy/mavonEditor)
+举个栗子，我不想用 Vue-Quill-Editor 这个组件，那我需要分四步走。
 
-### vue-cropperjs ###
-A Vue wrapper component for cropperjs. Github: [vue-cropperjs](https://github.com/Agontuk/vue-cropperjs)
-
-
-## Notice ##
-### 一、If I don't want to use some components, how can I delete it? ###
-
-For example, I don't want to use the Vue-Quill-Editor component, I need to take four steps.
-
-The first step to remove the component of the routing. Enter 'src/router/index.js' and delete the code below.
+第一步：删除该组件的路由，在目录 src/router/index.js 中，找到引入改组件的路由，删除下面这段代码。
 
 ```JavaScript
 {
+    // 富文本编辑器组件
     path: '/editor',
-    component: resolve => require(['../components/page/VueEditor.vue'], resolve) 
+    component: resolve => require(['../components/page/VueEditor.vue'], resolve)
 },
 ```
 
-Second,delete the component files. Enter 'src/components/page/' and delete 'VueEditor.vue' file.
+第二步：删除引入该组件的文件。在目录 src/components/page/ 删除 VueEditor.vue 文件。
 
-The third step is to delete the entry. Enter 'src/components/common/Sidebar.vue' and delete the code below.
-	
+第三步：删除该页面的入口。在目录 src/components/common/Sidebar.vue 中，找到该入口，删除下面这段代码。
+
 ```js
 {
 	index: 'editor',
@@ -125,39 +154,29 @@ The third step is to delete the entry. Enter 'src/components/common/Sidebar.vue'
 },
 ```
 
-Finally, uninstall this component.
-	
-	npm un vue-quill-editor -S
+第四步：卸载该组件。执行以下命令：
+npm un vue-quill-editor -S
 
-Complete!
+完成。
 
-### 二、How to switch themes? ###
+### 二、如何切换主题色呢？
 
-The first step to enter 'src/main.js' and change into green theme.
-
-```javascript
-import 'element-ui/lib/theme-default/index.css';    // default theme
-// import '../static/css/theme-green/index.css';       // green theme
-```
-
-The second step to enter 'src/App.vue' and change into green theme.
+第一步：打开 src/main.js 文件，找到引入 element 样式的地方，换成浅绿色主题。
 
 ```javascript
-@import "../static/css/main.css";
-@import "../static/css/color-dark.css";     /*深色主题*/
-/*@import "../static/css/theme-green/color-green.css";   !*浅绿色主题*!*/
+import 'element-ui/lib/theme-default/index.css'; // 默认主题
+// import './assets/css/theme-green/index.css';       // 浅绿色主题
 ```
 
-Finally,enter 'src/components/common/Sidebar.vue' and find el-menu Tags,delete 'background-color/text-color/active-text-color'。
+第二步：打开 src/App.vue 文件，找到 style 标签引入样式的地方，切换成浅绿色主题。
 
-## Screenshot ##
-### Default theme ###
+```javascript
+@import "./assets/css/main.css";
+@import "./assets/css/color-dark.css";     /*深色主题*/
+/*@import "./assets/css/theme-green/color-green.css";   !*浅绿色主题*!*/
+```
 
-![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms1.png)
-
-### Green theme ###
-
-![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png)
+第三步：打开 src/components/common/Sidebar.vue 文件，找到 el-menu 标签，把 background-color/text-color/active-text-color 属性去掉即可。
 
 ## License
 

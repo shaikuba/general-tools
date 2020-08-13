@@ -3,9 +3,9 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-calendar"></i> Job
+                    <i class="el-icon-lx-calendar"></i> Mock
                 </el-breadcrumb-item>
-                <el-breadcrumb-item>Job List</el-breadcrumb-item>
+                <el-breadcrumb-item>Mock Create</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
