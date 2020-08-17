@@ -40,10 +40,10 @@
             >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
-                <el-table-column prop="name" label="Name"></el-table-column>
-                <el-table-column prop="type" label="Type"></el-table-column>
-                <el-table-column prop="platform" label="platform" align="center"></el-table-column>
-                <el-table-column prop="privacy" label="Privacy"></el-table-column>
+                <el-table-column prop="requestUrl" label="Url"></el-table-column>
+                <el-table-column prop="requestMethod" label="Method"></el-table-column>
+                <el-table-column prop="contentType" label="Content-Type" align="center"></el-table-column>
+                <el-table-column prop="queryString" label="Query-String"></el-table-column>
                 <el-table-column label="Status" align="center">
                     <template slot-scope="scope">
                         <el-tag effect="dark" :type="scope.row.stateType">{{scope.row.stateDesc}}</el-tag>
@@ -149,33 +149,12 @@ export default {
         getData() {
             mockList(this.query).then(res => {
                 console.log(res);
-                this.tableData = res.elements.map(job => {
-                    console.log(job.latestHistory)
-                    if (job.latestHistory != null) {
-                        let state = job.latestHistory.state;
-                        switch (state) {    
-                            case 0:
-                                job.stateType = 'warning';
-                                job.stateDesc = 'Running';
-                                break;
-                            case 1:
-                                job.stateType = 'success';
-                                job.stateDesc = 'Success';
-                                break;
-                            case 2:
-                                job.stateType = 'danger';
-                                job.stateDesc = 'Failure';
-                                break;
-                            default:
-                                job.stateType = 'info';
-                                job.stateDesc = 'New';
-                        }
-                    } else {
-                        job.stateType = 'info';
-                        job.stateDesc = 'New';
-                    }
+                this.tableData = res.data.map(mock => {
+                    
+                    mock.stateType = 'success';
+                    mock.stateDesc = 'Active';
 
-                    return job;
+                    return mock;
                 });
                 this.query.page.pageNumber = res.pageNumber;
                 this.query.page.pageSize = res.pageSize;
