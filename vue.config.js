@@ -1,3 +1,5 @@
+// Reference official document: https://cli.vuejs.org/config/
+
 const ProxyAgent = require('proxy-agent')
 
 module.exports = {
