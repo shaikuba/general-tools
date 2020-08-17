@@ -20,6 +20,7 @@
                     placeholder="Method"
                     class="handle-select mr10"
                 >
+                    <el-option label="Select" value=""></el-option>
                     <el-option v-for="(item, index) in requestMethods" :key="index" :label="item" :value="item"></el-option>
                     
                 </el-select>
