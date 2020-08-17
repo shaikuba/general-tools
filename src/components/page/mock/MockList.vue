@@ -17,7 +17,7 @@
                 >Delete</el-button>
                 <el-select
                     v-model="query.criteria.requestMethod"
-                    placeholder="RequestMethod"
+                    placeholder="Method"
                     class="handle-select mr10"
                 >
                     <el-option v-for="(item, index) in requestMethods" :key="index" :label="item" :value="item"></el-option>
@@ -25,7 +25,7 @@
                 </el-select>
                 <el-input
                     v-model="query.criteria.requestUrl"
-                    placeholder="Job Name Or Platform"
+                    placeholder="Request Url"
                     class="handle-input mr10"
                 ></el-input>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">Search</el-button>
