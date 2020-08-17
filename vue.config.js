@@ -1,6 +1,6 @@
 // Reference official document: https://cli.vuejs.org/config/
 
-const ProxyAgent = require('proxy-agent')
+// const ProxyAgent = require('proxy-agent')
 
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
@@ -12,12 +12,12 @@ module.exports = {
     productionSourceMap: false,
     filenameHashing: false,
     devServer: {
-        host: '0.0.0.0',
+        host: '127.0.0.1',
         port: 8088,
         disableHostCheck: true, // 可使用本地host配置的域名访问
         proxy: {
             '/api': {
-                target: 'http://127.0.0.1:8080',
+                target: process.env.baseURL,
                 ws: false,
                 changeOrigin: true,
                 pathRewrite: {

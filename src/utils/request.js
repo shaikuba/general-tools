@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const service = axios.create({
     // process.env.NODE_ENV === 'development' 来判断是否开发环境
-    baseURL: 'http://localhost:8088',
+    baseURL: process.env.baseURL,
     timeout: 300000
 })
 

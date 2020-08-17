@@ -16,7 +16,7 @@
                     @click="delAllSelection"
                 >Delete</el-button>
                 <el-select
-                    v-model="query.criteria.type"
+                    v-model="query.criteria.requestMethod"
                     placeholder="RequestMethod"
                     class="handle-select mr10"
                 >
@@ -24,7 +24,7 @@
                     
                 </el-select>
                 <el-input
-                    v-model="query.criteria.name"
+                    v-model="query.criteria.requestUrl"
                     placeholder="Job Name Or Platform"
                     class="handle-input mr10"
                 ></el-input>
@@ -120,8 +120,8 @@ export default {
             requestMethods: requestMethods,
             query: {
                 criteria: {
-                    type: '',
-                    name: ''
+                    requestMethod: '',
+                    requestUrl: ''
                 },
                 page: {
                     pageNumber: 0,
