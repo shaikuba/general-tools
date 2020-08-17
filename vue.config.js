@@ -7,19 +7,21 @@ module.exports = {
         ? '/'
         : '/',
     outputDir: process.env.outputDir || 'dist',
-    assetsDir: 'static',
+    assetsDir: 'assets',
     indexPath: 'index.html',
     productionSourceMap: false,
+    filenameHashing: false,
     devServer: {
+        host: '0.0.0.0',
         port: 8088,
         disableHostCheck: true, // 可使用本地host配置的域名访问
         proxy: {
-            '/': {
-                target: 'http://127.0.0.1:8888',
+            '/api': {
+                target: 'http://127.0.0.1:8080',
                 ws: false,
                 changeOrigin: true,
                 pathRewrite: {
-                    '/': '/'
+                    '/api': '/'
                 }
             }
         }

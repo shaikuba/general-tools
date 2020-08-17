@@ -17,11 +17,11 @@
                 >Delete</el-button>
                 <el-select
                     v-model="query.criteria.type"
-                    placeholder="Type"
+                    placeholder="RequestMethod"
                     class="handle-select mr10"
                 >
-                    <el-option key="1" label="CMD" value="1"></el-option>
-                    <el-option key="2" label="Test" value="2"></el-option>
+                    <el-option v-for="(item, index) in requestMethods" :key="index" :label="item" :value="item"></el-option>
+                    
                 </el-select>
                 <el-input
                     v-model="query.criteria.name"
@@ -110,12 +110,14 @@
 </template>
 
 <script>
-import { jobList } from '../../../api/job';
+import { mockList } from '../../../api/mock';
+import {requestMethods} from '../../../utils/constant';
 
 export default {
     name: 'basetable',
     data() {
         return {
+            requestMethods: requestMethods,
             query: {
                 criteria: {
                     type: '',
@@ -145,7 +147,7 @@ export default {
     },
     methods: {
         getData() {
-            jobList(this.query).then(res => {
+            mockList(this.query).then(res => {
                 console.log(res);
                 this.tableData = res.elements.map(job => {
                     console.log(job.latestHistory)

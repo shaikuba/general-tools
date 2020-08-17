@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { createJob } from '../../../api/job';
+import { createMock } from '../../../api/mock';
 
 const osOptions = ['Windows', 'Windows-7', 'Windows-10', 'Linux'];
 var vm = {
@@ -102,7 +102,7 @@ var vm = {
                 newJob.instant = 0;
             }
 
-            createJob(newJob).then(res => {
+            createMock(newJob).then(res => {
                 if(res.code == 1) {
                     this.$message.success(res.message);
                 } else {

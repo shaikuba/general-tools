@@ -1,17 +1,17 @@
 import request from '../utils/request';
 
-export const jobList = (query) => {
+export const mockList = (query) => {
     return request({
-        url: `mock/list`,
+        url: `/api/mock/manage`,
         method: 'get',
         data: query
     })
 }
 
-export const createJob = (job) => {
+export const createMock = (mock) => {
     return request({
-        url: `mock/create`,
+        url: `/api/mock/manage`,
         method: 'post',
-        data: job
+        data: mock
     })
 }
