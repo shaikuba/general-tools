@@ -10,58 +10,70 @@
         </div>
         <div class="container">
             <div class="form-box">
-                <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="Name">
-                        <el-input v-model="form.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="Type">
-                        <el-select v-model="form.type" placeholder="Select One">
-                            <el-option key="CMD" label="CMD" value="CMD"></el-option>
-                            <el-option key="Test" label="Test" value="Test"></el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item label="Location" v-if="displayCmd">
-                        <el-checkbox-group v-model="form.platform" :min="0" :max="1">
-                            <el-checkbox
-                                v-for="osOpt in osOptions"
-                                :label="osOpt"
-                                :key="osOpt"
-                                v-bind:style="{'margin-bottom': 20 + 'px'}"
-                            >{{osOpt}}</el-checkbox>
-                        </el-checkbox-group>
-                        <el-input
-                            v-model="form.ip"
-                            v-bind:style="{'margin-bottom': 20 + 'px'}"
-                            placeholder="Ip address"
-                        ></el-input>
-                        <el-input
-                            v-model="form.url"
-                            placeholder="The absolute path of executable file in the server."
-                        ></el-input>
-                    </el-form-item>
-                    <el-form-item label="Run Now">
-                        <el-switch v-model="form.instant"></el-switch>
-                    </el-form-item>
-                    <el-form-item label="Scheduled" v-if="!form.instant">
-                        <el-date-picker
-                            v-model="form.scheduleTime"
-                            type="datetime"
-                            placeholder="Select date and time"
-                        ></el-date-picker>
-                    </el-form-item>
-                    <el-form-item label="Privacy">
-                        <el-radio-group v-model="form.privacy">
-                            <el-radio label="Private"></el-radio>
-                            <el-radio label="Public"></el-radio>
-                        </el-radio-group>
-                    </el-form-item>
-                    <el-form-item label="Description">
-                        <el-input type="textarea" rows="5" v-model="form.description"></el-input>
-                    </el-form-item>
+                <el-form ref="form" :rules="rules" :model="form" label-width="100px">
+                    <el-divider content-position="left">Request Configuration:</el-divider>
+
+                    <div style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); padding: 15px 15px 15px 15px">
+
+                        <el-form-item label="Url" prop="requestUrl">
+                            <el-input v-model="form.requestUrl"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="Method" prop="requestMethod">
+                            <el-select v-model="form.requestMethod" placeholder="Select One">
+                                <el-option v-for="(method, index) in methods" :key="index" :label="method"
+                                           :value="method"></el-option>
+                            </el-select>
+                        </el-form-item>
+
+                        <el-form-item label="QueryString" v-show="usingQueryString">
+                            <el-input v-model="form.queryString" placeholder="name1=value1&name2=value2"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="FormData" v-show="usingForm">
+                            <el-input v-model="form.formData" placeholder="name1=value1;name2=value2"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="Headers">
+                            <el-input type="textarea" rows="3" v-model="form.requestHeaders"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="RequestBody">
+                            <el-input type="textarea" rows="3" v-model="form.requestBody"></el-input>
+                        </el-form-item>
+
+                    </div>
+
+                    <div style="margin-bottom: 50px"/>
+                    <el-divider content-position="left">Response Configuration:</el-divider>
+
+                    <div style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); padding: 15px 15px 15px 15px">
+                        <el-form-item label="StatusCode" prop="statusCode">
+                            <el-input v-model="form.statusCode"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="Headers">
+                            <el-input type="textarea" rows="3" v-model="form.responseHeaders"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="ContentType" prop="contentType">
+                            <el-input v-model="form.contentType"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="ResponseBody">
+                            <el-input type="textarea" rows="3" v-model="form.responseBody"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="Description" prop="description">
+                            <el-input type="textarea" rows="5" v-model="form.description"></el-input>
+                        </el-form-item>
+
+                    </div>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit">Submit</el-button>
                         <el-button>Cancel</el-button>
                     </el-form-item>
+
                 </el-form>
             </div>
         </div>
@@ -69,56 +81,73 @@
 </template>
 
 <script>
-import { createMock } from '../../../api/mock';
+    import {createMock} from '../../../api/mock';
 
-const osOptions = ['Windows', 'Windows-7', 'Windows-10', 'Linux'];
-var vm = {
-    name: 'jobCreate',
-    data() {
-        return {
-            osOptions: osOptions,
-            form: {
-                name: '',
-                type: 'CMD',
-                platform: ['Windows'],
-                ip: '',
-                url: '',
-                instant: false,
-                scheduleTime: new Date().getTime(),
-                privacy: 'Public',
-                description: ''
-            }
-        };
-    },
-    methods: {
-        onSubmit() {
-            let newJob = JSON.parse(JSON.stringify(this.form));
-            newJob.platform = this.form.platform[0];
-            newJob.type = this.form.type == 'CMD' ? 1 : 2
-            if(this.form.instant) {
-                newJob.instant = 1;
-                newJob.scheduletime = new Date();
-            } else {
-                newJob.instant = 0;
-            }
+    const methods = ['GET', 'POST', 'PUT', 'DELETE'];
+    let vm = {
+        name: 'mockCreate',
+        data() {
+            return {
+                methods: methods,
+                form: {
+                    // params for request
+                    requestUrl: '',
+                    requestMethod: 'GET',
+                    queryString: '',
+                    formData: '',
+                    requestHeaders: "",
+                    requestBody: "",
 
-            createMock(newJob).then(res => {
-                if(res.code == 1) {
-                    this.$message.success(res.message);
-                } else {
+                    // params for response
+                    statusCode: 200,
+                    responseHeaders: "",
+                    responseBody: "",
+                    contentType: 'application/json;charset=utf8',
+                    description: ''
+                },
+                rules: {
+                    requestUrl: [
+                        { required: true, message: 'Please input request url', trigger: 'change' }
+                    ],
+                    requestMethod: [
+                        { required: true, message: 'Please select request method', trigger: 'change' }
+                    ],
+                    statusCode: [
+                        { required: true, message: 'Please input return status code', trigger: 'blur' },
+                        { min: 3, max: 3, message: 'Length should be equal to 3!', trigger: 'blur' }
+                    ],
+                    contentType: [
+                        { required: true, message: 'Please input return content type', trigger: 'change' }
+                    ],
+                    description: [
+                        { required: false, message: 'Please input activity form', trigger: 'blur' },
+                        { min: 0, max: 99, message: 'Length should be equal to 3!', trigger: 'blur' }
+                    ]
                 }
-            });
-        }
-    },
-    computed: {
-        displayCmd: function() {
-            if (this.form.type == 'CMD') {
-                return true;
-            }
-            return false;
-        }
-    }
-};
+            };
+        },
+        methods: {
+            onSubmit() {
+                let newMock = JSON.parse(JSON.stringify(this.form));
 
-export default vm;
+                createMock(newMock).then(res => {
+                    if (res.code == '0000') {
+                        this.$message.success(res.message);
+                    } else {
+                        this.$message.error(res.message)
+                    }
+                });
+            }
+        },
+        computed: {
+            usingQueryString: function () {
+                return this.form.requestMethod == 'GET' || this.form.requestMethod == 'DELETE';
+            },
+            usingForm: function () {
+                return this.form.requestMethod == 'GET' || this.form.requestMethod == 'POST';
+            }
+        }
+    };
+
+    export default vm;
 </script>
