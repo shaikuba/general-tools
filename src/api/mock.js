@@ -2,8 +2,7 @@ import request from '../utils/request';
 import qs from 'qs';
 
 export const mockList = (query) => {
-    console.log("==========")
-    console.log(JSON.stringify(query));
+
     return request({
         url: `/api/mock/manage/list`,
         method: 'POST',
