@@ -10,13 +10,13 @@
         </div>
         <div class="container">
             <div class="form-box">
-                <el-form ref="form" :rules="rules" :model="form" label-width="100px">
+                <el-form ref="form" :rules="rules" :model="form" label-width="120px">
                     <el-divider content-position="left">Request Configuration:</el-divider>
 
                     <div style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); padding: 15px 15px 15px 15px">
 
                         <el-form-item label="Url" prop="requestUrl">
-                            <el-input v-model="form.requestUrl"></el-input>
+                            <el-input v-model="form.requestUrl" placeholder="/path/to/api"></el-input>
                         </el-form-item>
 
                         <el-form-item label="Method" prop="requestMethod">
@@ -31,7 +31,7 @@
                         </el-form-item>
 
                         <el-form-item label="FormData" v-show="usingForm">
-                            <el-input v-model="form.formData" placeholder="name1=value1;name2=value2"></el-input>
+                            <el-input v-model="form.formData" placeholder="name1=value1&name2=value2"></el-input>
                         </el-form-item>
 
                         <el-form-item label="Headers">
@@ -60,7 +60,7 @@
                             <el-input v-model="form.contentType"></el-input>
                         </el-form-item>
 
-                        <el-form-item label="ResponseBody">
+                        <el-form-item label="ResponseBody" prop="responseBody">
                             <el-input type="textarea" rows="3" v-model="form.responseBody"></el-input>
                         </el-form-item>
 
@@ -107,28 +107,31 @@
                 },
                 rules: {
                     requestUrl: [
-                        { required: true, message: 'Please input request url', trigger: 'change' }
+                        { required: true, message: 'Please input request url', trigger: 'blur' }
                     ],
                     requestMethod: [
-                        { required: true, message: 'Please select request method', trigger: 'change' }
+                        { required: true, message: 'Please select request method', trigger: 'blur' }
                     ],
                     statusCode: [
                         { required: true, message: 'Please input return status code', trigger: 'blur' },
-                        { min: 3, max: 3, message: 'Length should be equal to 3!', trigger: 'blur' }
+                        { min: 3, max: 3, message: 'Length should be equal to 3!', trigger: 'change' }
                     ],
                     contentType: [
                         { required: true, message: 'Please input return content type', trigger: 'change' }
                     ],
+                    responseBody: [
+                        { required: true, message: 'Please input response body for this mock request', trigger: 'blur' },
+                        { min: 1, max: 2048, message: 'ResponseBody\'s max length should be 2048', trigger: 'blur' }
+                    ],
                     description: [
-                        { required: false, message: 'Please input activity form', trigger: 'blur' },
-                        { min: 0, max: 99, message: 'Length should be equal to 3!', trigger: 'blur' }
+                        { min: 0, max: 99, message: 'Description\'s max length should be 99', trigger: 'blur' }
                     ]
                 }
             };
         },
         methods: {
             onSubmit() {
-                let newMock = JSON.parse(JSON.stringify(this.form));
+                let newMock = JSON.stringify(this.form);
 
                 createMock(newMock).then(res => {
                     if (res.code == '0000') {

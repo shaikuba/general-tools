@@ -11,7 +11,7 @@ const service = axios.create({
     timeout: 300000
 })
 
-service.interceptors.request.use( config => {
+service.interceptors.request.use(config => {
     return config;
 }, error => {
     console.log(error);
@@ -19,9 +19,9 @@ service.interceptors.request.use( config => {
 })
 
 service.interceptors.response.use(response => {
-    if(response.status === 200){
+    if (response.status === 200) {
         return response.data;
-    }else{
+    } else {
         Promise.reject();
     }
 }, error => {

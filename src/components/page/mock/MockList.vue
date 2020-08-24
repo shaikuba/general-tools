@@ -84,7 +84,7 @@
                 <el-pagination
                     background
                     layout="total, prev, pager, next"
-                    :current-page="query.page.pageNumber"
+                    :current-page="query.page.pageNumber + 1"
                     :page-size="query.page.pageSize"
                     :total="pageTotal"
                     @current-change="handlePageChange"
@@ -130,7 +130,7 @@ export default {
                 },
                 sort: {
                     sortBy: 'id',
-                    direction: 'ASC'
+                    direction: 'DESC'
                 }
             },
             tableData: [],
@@ -148,22 +148,22 @@ export default {
     },
     methods: {
         getData() {
-            mockList(this.query).then(res => {
+            mockList(JSON.stringify(this.query)).then(res => {
                 console.log(res);
-                this.tableData = res.data.map(mock => {
+                this.tableData = res.data.elements.map(mock => {
                     
                     mock.stateType = 'success';
                     mock.stateDesc = 'Active';
 
                     return mock;
                 });
-                this.query.page.pageNumber = res.pageNumber;
-                this.query.page.pageSize = res.pageSize;
-                this.pageTotal = res.dataCount || 10;
+//                this.query.page.pageNumber = res.pageNumber;
+//                this.query.page.pageSize = res.pageSize;
+                this.pageTotal = res.data.dataCount || 10;
             });
         },
         handleSearch() {
-            this.$set(this.query.page, 'pageNumber', 1);
+            //this.$set(this.query.page, 'pageNumber', 1);
             this.getData();
         },
         handleDelete(index, row) {

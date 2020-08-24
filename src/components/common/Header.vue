@@ -8,13 +8,18 @@
         <div class="logo">Test Toolkit</div>
         <div class="header-right">
             <div class="header-user-con">
+
                 <!-- 全屏显示 -->
+<!--
                 <div class="btn-fullscreen" @click="handleFullScreen">
                     <el-tooltip effect="dark" :content="fullscreen?`Exit`:`Full Screen`" placement="bottom">
                         <i class="el-icon-rank"></i>
                     </el-tooltip>
                 </div>
+-->
+
                 <!-- 消息中心 -->
+<!--
                 <div class="btn-bell">
                     <el-tooltip
                         effect="dark"
@@ -27,6 +32,8 @@
                     </el-tooltip>
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
+-->
+
                 <!-- 用户头像 -->
                 <div class="user-avator">
                     <img src="../../assets/img/img.jpg" />

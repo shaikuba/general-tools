@@ -2,12 +2,10 @@ import request from '../utils/request';
 import qs from 'qs';
 
 export const mockList = (query) => {
-
     return request({
         url: `/api/mock/manage/list`,
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        data: JSON.stringify(query)
+        data: query
     })
 }
 
