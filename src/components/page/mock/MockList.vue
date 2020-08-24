@@ -93,7 +93,13 @@
         </div>
 
         <!-- 编辑弹出框 -->
-        <el-dialog title="Edit" :visible.sync="editVisible" width="30%">
+        <el-dialog title="Mock Edit" :visible.sync="editVisible" width="40%">
+            <mock-create :isNew="false" :form="form" @close-dialog="editVisible = false"></mock-create>
+        </el-dialog>
+
+
+<!--
+        <el-dialog title="Edit-deprecated" :visible.sync="editVisible-deprecated" width="30%">
             <el-form ref="form" :model="form" label-width="70px">
                 <el-form-item label="用户名">
                     <el-input v-model="form.name"></el-input>
@@ -107,12 +113,15 @@
                 <el-button type="primary" @click="saveEdit">Confirm</el-button>
             </span>
         </el-dialog>
+-->
+
     </div>
 </template>
 
 <script>
 import { mockList } from '../../../api/mock';
 import {requestMethods} from '../../../utils/constant';
+import mockCreate from './MockCreate.vue' // For edit page
 
 export default {
     name: 'basetable',
@@ -142,6 +151,9 @@ export default {
             idx: -1,
             id: -1
         };
+    },
+    components: {
+        mockCreate
     },
     created() {
         this.getData();

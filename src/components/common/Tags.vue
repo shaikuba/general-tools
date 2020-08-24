@@ -40,7 +40,7 @@
                 const item = this.tagsList[index] ? this.tagsList[index] : this.tagsList[index - 1];
                 if (item) {
                     delItem.path === this.$route.fullPath && this.$router.push(item.path);
-                }else{
+                } else {
                     this.$router.push('/');
                 }
             },
@@ -61,8 +61,8 @@
                 const isExist = this.tagsList.some(item => {
                     return item.path === route.fullPath;
                 })
-                if(!isExist){
-                    if(this.tagsList.length >= 8){
+                if (!isExist) {
+                    if (this.tagsList.length >= 8) {
                         this.tagsList.shift();
                     }
                     this.tagsList.push({
@@ -82,7 +82,7 @@
                 return this.tagsList.length > 0;
             }
         },
-        watch:{
+        watch: {
             $route(newValue, oldValue){
                 this.setTags(newValue);
             }
@@ -93,12 +93,12 @@
             bus.$on('close_current_tags', () => {
                 for (let i = 0, len = this.tagsList.length; i < len; i++) {
                     const item = this.tagsList[i];
-                    if(item.path === this.$route.fullPath){
-                        if(i < len - 1){
-                            this.$router.push(this.tagsList[i+1].path);
-                        }else if(i > 0){
-                            this.$router.push(this.tagsList[i-1].path);
-                        }else{
+                    if (item.path === this.$route.fullPath) {
+                        if (i < len - 1) {
+                            this.$router.push(this.tagsList[i + 1].path);
+                        } else if (i > 0) {
+                            this.$router.push(this.tagsList[i - 1].path);
+                        } else {
                             this.$router.push('/');
                         }
                         this.tagsList.splice(i, 1);
