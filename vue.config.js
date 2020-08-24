@@ -23,6 +23,11 @@ module.exports = {
                 pathRewrite: {
                     '/api': '/'
                 }
+            },
+            '/': {
+                target: process.env.baseURL,
+                ws: false,
+                changeOrigin: true
             }
         }
 

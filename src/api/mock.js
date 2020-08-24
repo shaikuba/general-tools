@@ -3,7 +3,7 @@ import qs from 'qs';
 
 export const mockList = (query) => {
     return request({
-        url: `/api/mock/manage/list`,
+        url: `/mock/manage/list`,
         method: 'POST',
         data: query
     })
@@ -11,7 +11,7 @@ export const mockList = (query) => {
 
 export const createMock = (mock) => {
     return request({
-        url: `/api/mock/manage/save`,
+        url: `/mock/manage/save`,
         method: 'post',
         data: mock
     })
