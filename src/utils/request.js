@@ -8,7 +8,8 @@ axios.defaults.headers.delete['Content-Type'] = 'application/json';
 const service = axios.create({
     // process.env.NODE_ENV === 'development' 来判断是否开发环境
     baseURL: process.env.baseURL,
-    timeout: 300000
+    timeout: 300000,
+    headers: {'Content-Type': 'application/json'}
 })
 
 service.interceptors.request.use(config => {

@@ -16,3 +16,13 @@ export const createMock = (mock) => {
         data: mock
     })
 }
+
+export const deleteMock = (idList) => {
+    return request({
+        url: `/mock/manage/delete`,
+        method: 'DELETE',
+        params: {
+            idList: idList
+        }
+    })
+}

@@ -71,7 +71,6 @@
                     </div>
                     <el-form-item style="margin-top: 20px">
                         <el-button type="primary" @click="onSubmit" style="margin-right: 50px">Submit</el-button>
-                        <el-button>Cancel</el-button>
                     </el-form-item>
 
                 </el-form>
