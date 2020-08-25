@@ -63,6 +63,11 @@
                         ]
                     },
                     {
+                        icon: 'el-icon-coordinate',
+                        index: '/certs',
+                        title: 'Certificates'
+                    },
+                    {
                         icon: 'el-icon-help',
                         index: '/help',
                         title: 'Help'

@@ -30,6 +30,11 @@ export default new Router({
                     meta: { title: 'Create Mock' }
                 },
                 {
+                    path: 'certs',
+                    component: () => import('../components/page/Cert.vue'),
+                    meta: { title: 'Certificates' }
+                },
+                {
                     path: 'upload',
                     component: () => import('../components/page/Upload.vue'),
                     meta: { title: 'File Upload' }
