@@ -95,7 +95,7 @@
         </div>
 
         <!-- 编辑弹出框 -->
-        <el-dialog title="Mock Edit" :visible.sync="editVisible" width="40%">
+        <el-dialog title="Mock Edit" :visible.sync="editVisible" width="60%">
             <mock-create :isNew="false" :form="form" @close-dialog="editVisible = false; this.getData()"></mock-create>
         </el-dialog>
 
