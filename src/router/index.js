@@ -12,12 +12,12 @@ export default new Router({
         {
             path: '/',
             component: () => import('../components/common/Home.vue'),
-            meta: { title: '自述文件' },
+            meta: { title: '首页' },
             children: [
                 {
                     path: 'dashboard',
                     component: () => import('../components/page/Dashboard.vue'),
-                    meta: { title: '系统首页' }
+                    meta: { title: 'Dashboard' }
                 },
                 {
                     path: 'mockList',
@@ -99,4 +99,5 @@ export default new Router({
             redirect: '/404'
         }
     ]
+
 });
